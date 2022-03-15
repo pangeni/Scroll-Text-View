@@ -1,3 +1,129 @@
 <resources>
-    <string name="app_name">Scrolling Text</string>
+    <string name="app_name">Scroll Text View</string>
+    <string name="article_title">Article Title</string>
+    <string name="article_sub_title">Article Sub-Title</string>
+    <string name="article_text"><b> <i>2. UNDERSTANDING UNIQUE CHARACTERISTICS OF WEB APPLICATIONS https://www.youtube.com</i> </b> \n
+Web application is a client-server application that is executed over the Web platform.
+It is an integral part of today’s Web ecosystem that enables dynamic information and
+service delivery. As shown in Figure 1, a web application consists of code on both the
+server side and the client side. On the server side, a web application receives user
+inputs via HTTP requests from the client (i.e., browser) and interacts with local file
+systems, back-end databases, or other components for data access and information retrieval.
+Its outputs (i.e., HTML pages) are sent to the client through HTTP responses.
+On the client side, HTML pages are rendered, and the client-side code (i.e., JavaScript)
+embedded in the HTTP responses is executed by the web browser. The client-side code
+can also communicate with the server-side code asynchronously without interfering
+with the display of the existing HTML page via AJAX and dynamically update the
+page. Currently, some programming libraries and frameworks (e.g., Rails and Django)
+are developed to facilitate rapid application development. For example, most web development
+frameworks provide session management functions, which developers can
+directly leverage to manage the web sessions. \n
+The execution model of web applications is radically different from traditional applications.
+The development of web applications also faces challenges that are not ordinarily
+encountered in the development of traditional applications. First, in the open web
+environment, user inputs are potentially dangerous and can never be trusted. Input
+ACM Computing Surveys, Vol. 46, No. 4, Article 54, Publication date: March 2014.
+54:4 X. Li and Y. Xue \n
+validation is an important part of a web application to identify and sanitize untrusted
+user inputs. Although input validation is an essential function required by all types
+of applications, its implementation in web applications is much more challenging due
+to the unique features of web development technologies. Second, the communication
+between the client and the web application is carried out through the stateless HTTP
+protocol. As a result, multiple inputs from the same user will appear to be independent
+users to the web application. The web application has to employ session management
+in order to correlate the web requests from the same user into a web session. Finally, a
+web application is usually implemented as a number of modules with URLs as their entry
+points. This allows a user to directly access the application modules in an arbitrary
+order. Recently, AJAX applications provide users with a richer and more responsive
+experience by moving part of the computation to the client side, which avoids unnecessary
+network round trips. Since the computing results from the client side can never
+be trusted, additional validation of these results is required on the server side. These
+unique features significantly complicate the logic implementation of a web application,
+which needs to enforce the application’s control flow between the client and the server
+and across different modules. These three aspects of web application development are
+described in the following sections. \n
+<b> 2.1. Input Validation </b> \n
+User inputs can never be trusted and need to be validated or sanitized before they can
+be utilized by web applications. Usually, web developers employ sanitization routines
+(i.e., sanitizers) to transform user inputs into trusted data by filtering or escaping
+suspicious characters or constructs.Web applications allow developers to blend several
+types of constructs in one file for runtime interpretation. For instance, a PHP file may
+contain both static HTML tags and PHP statements, and an HTML page may embed
+executable JavaScript code. The representation of application data and code via an
+unstructured sequence of bytes is a unique feature of web application. While enhancing
+the development efficiency, this unique feature complicates the input validation of
+web applications, since developers have to anticipate the contexts where and how
+user inputs are utilized that pose different sanitization requirements (i.e., contextsensitive
+sanitization). For instance, applying the default HTML escaping sanitizer is
+recommended for sanitizing the values inside HTML tags; however, this sanitizer is
+insufficient for sanitizing values within URL attributes (such as src or href), since the
+URI attribute of the script tag can embed malicious code [Samuel et al. 2011]. \n
+        <b> 2.2. Session Management </b> \n
+Web applications adopt an abstraction of a web session to identify and correlate a
+series of web requests from the same user during a certain period of time. A set of
+session variables (or session data) is associated with a web session and can be used
+by the application to record the conditions from the historical web requests that affect
+the future execution of the web application (i.e., application session state). The session
+variables can be maintained either at the client side (via a cookie, a hidden form, or
+URL rewriting) or at the server side (in a file or using a database). In the latter case,
+a unique identifier (session ID) is defined to index the explicit session variables stored
+at the server side and issued to the client. Most web programming languages (e.g.,
+PHP and JSP) and frameworks offer developers a collection of functions for managing
+the web session. For example, in PHP, session_start() can be called to initialize a web
+session, and a predefined global array $_SESSION can be employed to contain the
+session variables. In either case, the client plays a vital role in maintaining the session
+information.
+ACM Computing Surveys, Vol. 46, No. 4, Article 54, Publication date: March 2014.
+A Survey on Server-Side Approaches to Securing Web Applications 54:5 \n
+        <b> 2.3. Logic Implementation </b> \n
+A web application’s logic is usually implemented through enforcing the control flow
+of the application and protecting sensitive information and operations, which can be
+achieved explicitly through security checks in the source code or implicitly through
+the navigation paths presented to users (i.e., interface hiding). Explicit security checks
+examine the application state, which is maintained by session variables and persistent
+objects in the database, before sensitive information and operations can be accessed.
+However, interface hiding only allows accessible resources and operations to
+be presented as web links exposed to users. Many web applications share common
+components in their business logic. For instance, authentication and authorization are
+the most common part of the control flow in many web applications through which
+a web application restricts its sensitive information and privileged operations from
+unauthorized users. A common practice is for developers to place authorization checks
+on certain security critical variables before all sensitive information and operations.
+These variables can include client-side cookies, session variables, and persistent objects
+in the database. In AJAX applications, the application functionality needs to be
+split in such a way that all required security checks are performed on the server.
+3. UNDERSTANDING WEB APPLICATION VULNERABILITIES AND ATTACKS
+In general, there are three types of security vulnerabilities within web applications
+at different levels: input validation vulnerability at the single request level, session
+management vulnerability at the session level, and application logic vulnerability at
+the level of the whole application. In what follows, we describe the three types of
+vulnerabilities and the common attacks that exploit them. \n
+        <b> 3.1. Input Validation Vulnerabilities </b> \n
+A common security practice is input data validation, since user input data cannot be
+trusted. Data validation is the process of ensuring that a program operates on clean,
+correct, and useful input data. When inputs are not sufficiently or correctly validated,
+attackers are able to craft malformed inputs, which can alter program executions and
+gain unauthorized access to resources. Input validation vulnerability is a long-lived
+problem in software security. Incorrect or insufficient input validation could invite a
+variety of attacks, such as buffer overflow attacks and code injection attacks.
+Web applications may contain a wide range of input validation vulnerabilities. Since
+the entire web request, including request headers and payload data, is under the complete
+control of users, a web application has to ensure that user inputs are processed
+and utilized in a secure way during the execution. Web applications with input validation
+vulnerabilities are susceptible to a class of attacks usually referred to as script
+injections, dataflow attacks, or input validation attacks. This type of attack usually embeds
+malicious scripts within web requests with the goal of injecting them into trusted
+web contents composed by the web application. As a result, the structural integrity of
+the web application output is violated. Thus, input validation attacks can manifest as
+both malformed input and output of the application.
+These attacks can be generally categorized by the locations where malicious scripts
+get executed. For example, directory traversal attacks aim to access unauthorized
+directories within the local file system by embedding “../” (dot dot slash) characters.
+OS/command injections happen when the operating system executes malicious shell
+commands injected through web requests. Currently, input validation attacks are seen
+as the most dangerous and popular attacks against web application security, which
+manifest as the top 2 security risks (i.e., injections, cross-site scripting [XSS]) from
+OWASP top-10 security risks [OWASP Top 10 2013].
+    </string>
+    <string name="add_comment">Comment</string>
 </resources>
