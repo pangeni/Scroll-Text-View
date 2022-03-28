@@ -1,4 +1,4 @@
-# Scrolling task view
+# Scrolling task view (HomeWork)
 - In this task i have created multiple text view Elements.
 - ScrollView elements defines a scrolling text within the relative layout.
 - By the help of Linear Layout Article Sub-title is displayed on a side of the main Article paragraph.
