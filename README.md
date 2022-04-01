@@ -9,7 +9,7 @@
 - This is how i implement two text view inside the Scroll view component.
 
 ## Horizontal Scroll text View
-![alt text](labH.png)
+![alt text](LabH.png)
 ## Vertical Scroll Text View
-![alt text](labV.png)
+![alt text](LabV.png)
 
