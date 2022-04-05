@@ -6,6 +6,8 @@
 - In the article i have implemented an free format HTML tags in the paragraph.
 - in this article there is also an web link which helps to navigate to the server.
 - there is also an Comment button below the article.
+## HomeWork view in GIF
+![alt text](g.gif)
 
 ## Project Images
 ![alt text](TextView.png)
